@@ -13,9 +13,11 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] private float _stopTargetFollowingRange;
     [SerializeField] private EnemyAttack _enemyAttack;
     [SerializeField]  private AIDestinationSetter _aiDestinationSetter;
+    [SerializeField] private float _microphoneStrength;
     private Player _player;
     private EnemyStates _currentState;
     private Vector3 _roamPosition;
+    private MicLoudnessDetection _micLoudnessDetection;
 
     void TryFindTarget()
     {
