@@ -27,7 +27,7 @@ public class ZombieAI : MonoBehaviour
 
     Vector3 GenerateRoamPosition()
     {
-        var roamPosition = gameObject.transform.position + GenerateRoamPosition() * GenerateRandomWalkableDistance();
+        var roamPosition = gameObject.transform.position + GenerateRandomDirection() * GenerateRandomWalkableDistance();
         return roamPosition;
     }
 
@@ -72,7 +72,7 @@ public class ZombieAI : MonoBehaviour
                 if (Vector3.Distance(gameObject.transform.position, _player.transform.position) >=
                     _stopTargetFollowingRange)
                 {
-                    _enemyAttack.TryAttackPlayer();
+                    _currentState = EnemyStates.Roaming;
                 }
 
                 break;
