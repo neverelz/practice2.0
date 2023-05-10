@@ -47,6 +47,7 @@ public class ZombieAI : MonoBehaviour
 
             _currentState = EnemyStates.MovingToSound;
         }
+         
     }
     Vector3 GenerateRoamPosition()
     {
@@ -100,6 +101,7 @@ public class ZombieAI : MonoBehaviour
                 }
                 break;
             case EnemyStates.MovingToSound:
+                TryHearTarget();
                 _aiDestinationSetter.target = _soundTarget.transform;
                 
                 if (Vector3.Distance(gameObject.transform.position, _player.transform.position) < _targetFollowRange)
@@ -107,7 +109,7 @@ public class ZombieAI : MonoBehaviour
                     _currentState = EnemyStates.Following;
                 }
 
-                if (Vector3.Distance(gameObject.transform.position, _player.transform.position) < 1)
+                if (Vector3.Distance(gameObject.transform.position, _soundTarget.transform.position) < 3)
                 {
                     _currentState = EnemyStates.Roaming;
                 }
