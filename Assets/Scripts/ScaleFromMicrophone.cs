@@ -15,13 +15,6 @@ public class ScaleFromMicrophone : MonoBehaviour
     public float threshold = 0.1f;
 
     public float loudnessSensibility = 100;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float loudness = detector.GetLoudnessFromMicrophone() * loudnessSensibility;

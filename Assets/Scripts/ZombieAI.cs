@@ -9,15 +9,24 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] private float _maxWalkableDistance;
     [SerializeField] private float _reachedPointDistance;
     [SerializeField] private GameObject _roamTarget;
+    [SerializeField] private GameObject _soundTarget;
     [SerializeField] private float _targetFollowRange;
     [SerializeField] private float _stopTargetFollowingRange;
     [SerializeField] private EnemyAttack _enemyAttack;
     [SerializeField]  private AIDestinationSetter _aiDestinationSetter;
-    [SerializeField] private float _microphoneStrength;
+    [SerializeField] private float _microphoneDistance;
+    public AudioSource source;
+    
+    public MicLoudnessDetection detector;
+
+    public float threshold = 0.1f;
+
+    public float loudnessSensibility = 100;
     private Player _player;
     private EnemyStates _currentState;
     private Vector3 _roamPosition;
     private MicLoudnessDetection _micLoudnessDetection;
+    private Vector3 _soundPosition;
 
     void TryFindTarget()
     {
@@ -27,6 +36,18 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
+    void TryHearTarget()
+    {
+        float loudness = detector.GetLoudnessFromMicrophone() * loudnessSensibility;
+        if (loudness < threshold) loudness = 0;
+        if (loudness > _microphoneDistance)
+        {
+            _soundPosition = _player.transform.position;
+            _soundTarget.transform.position = _soundPosition;
+
+            _currentState = EnemyStates.MovingToSound;
+        }
+    }
     Vector3 GenerateRoamPosition()
     {
         var roamPosition = gameObject.transform.position + GenerateRandomDirection() * GenerateRandomWalkableDistance();
@@ -63,6 +84,7 @@ public class ZombieAI : MonoBehaviour
 
                 _aiDestinationSetter.target = _roamTarget.transform;
                 TryFindTarget();
+                TryHearTarget();
                 break;
             case EnemyStates.Following:
                 _aiDestinationSetter.target = _player.transform;
@@ -72,18 +94,33 @@ public class ZombieAI : MonoBehaviour
                     _enemyAttack.TryAttackPlayer();
                 }
                 if (Vector3.Distance(gameObject.transform.position, _player.transform.position) >=
-                    _stopTargetFollowingRange)
+                    _targetFollowRange)
+                {
+                    _currentState = EnemyStates.Roaming;
+                }
+                break;
+            case EnemyStates.MovingToSound:
+                _aiDestinationSetter.target = _soundTarget.transform;
+                
+                if (Vector3.Distance(gameObject.transform.position, _player.transform.position) < _targetFollowRange)
+                {
+                    _currentState = EnemyStates.Following;
+                }
+
+                if (Vector3.Distance(gameObject.transform.position, _player.transform.position) < 1)
                 {
                     _currentState = EnemyStates.Roaming;
                 }
 
                 break;
+                
         }
     }
 
     public enum EnemyStates
     {
         Roaming,
-        Following
+        Following,
+        MovingToSound
     }
 }
