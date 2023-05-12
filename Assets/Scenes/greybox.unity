@@ -1349,6 +1349,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed3e1684f0a3ac46ae552f0ddbaa88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _healPerSecond: 0
+  _health: 0
+--- !u!1 &1502026804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1888809400034765771, guid: df66a08768668354388edca9cddcd2af,
+    type: 3}
+  m_PrefabInstance: {fileID: 2068368265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1502026813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502026804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed3e1684f0a3ac46ae552f0ddbaa88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _healPerSecond: 8
+  _health: 100
 --- !u!1 &1566114184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1888809400160592032, guid: df66a08768668354388edca9cddcd2af,
@@ -1539,63 +1563,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &1829837930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829837924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847a14d4dc9cc43679ab34fc78e0182f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4
-  autoRepath:
-    mode: 2
-    interval: 0.5
-    sensitivity: 10
-    maximumInterval: 2
-    visualizeSensitivity: 0
-  canMove: 1
-  speed: 2
-  orientation: 0
-  enableRotation: 1
-  rotationSpeed: 10
-  interpolatePathSwitches: 1
-  switchPathInterpolationSpeed: 5
-  targetCompatibility: {fileID: 0}
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
---- !u!114 &1829837931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829837924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!114 &1829837932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1608,7 +1575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4af98326cf4b4ab85cc82a942bf181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 2
+  _attackRange: 3
+  _damage: 30
+  _cooldown: 2
 --- !u!114 &1829837933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,8 +1590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e30380dbdde3424b9adab355647480c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minWalkableDistance: 1
-  _maxWalkableDistance: 5
+  _minWalkableDistance: 5
+  _maxWalkableDistance: 10
   _reachedPointDistance: 3
   _roamTarget: {fileID: 873220929}
   _soundTarget: {fileID: 242111290}
@@ -1630,11 +1599,54 @@ MonoBehaviour:
   _stopTargetFollowingRange: 15
   _enemyAttack: {fileID: 1829837932}
   _aiDestinationSetter: {fileID: 1829837928}
+  _aiPath: {fileID: 1829837936}
   _microphoneDistance: 1
   source: {fileID: 0}
   detector: {fileID: 839994609}
   threshold: 0.1
   loudnessSensibility: 100
+--- !u!114 &1829837936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829837924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+  radius: 0.5
+  height: 2
+  canMove: 1
+  maxSpeed: 3
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
+  orientation: 0
+  enableRotation: 1
+  autoRepath:
+    mode: 2
+    interval: 0.5
+    sensitivity: 10
+    maximumInterval: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 2
+  pickNextWaypointDist: 2
+  endReachedDistance: 2
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
 --- !u!1 &1844219077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,7 +1873,7 @@ PrefabInstance:
     - target: {fileID: 1888809400034765778, guid: df66a08768668354388edca9cddcd2af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 1888809400034765778, guid: df66a08768668354388edca9cddcd2af,
         type: 3}
@@ -1871,7 +1883,7 @@ PrefabInstance:
     - target: {fileID: 1888809400034765778, guid: df66a08768668354388edca9cddcd2af,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.67
+      value: -4.29
       objectReference: {fileID: 0}
     - target: {fileID: 1888809400034765778, guid: df66a08768668354388edca9cddcd2af,
         type: 3}
