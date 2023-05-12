@@ -32,7 +32,7 @@ public class EnemyAttack : MonoBehaviour
 
         public void TryAttackPlayer()
         {
-                CanAttack = false;
                 _player.TakeDamage(_damage);
+                CanAttack = false;
         }
 }
