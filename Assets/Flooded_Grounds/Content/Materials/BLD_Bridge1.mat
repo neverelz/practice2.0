@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BLD_Bridge1
-  m_Shader: {fileID: -6465566751694194690, guid: 906d6887f6248ea4fba10fd921c6784a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 906d6887f6248ea4fba10fd921c6784a,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 5
@@ -109,7 +110,7 @@ Material:
     - _Power: 3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Shift: -0.76
+    - _Shift: -3.24
     - _SrcBlend: 1
     - _UVSec: 0
     - _VMask: 0

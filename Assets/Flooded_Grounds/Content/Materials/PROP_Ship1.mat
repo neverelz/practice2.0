@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PROP_Ship1
-  m_Shader: {fileID: -6465566751694194690, guid: 906d6887f6248ea4fba10fd921c6784a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 906d6887f6248ea4fba10fd921c6784a,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 5
@@ -106,7 +107,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 4
+    - _Power: 0.29
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shift: 1.5

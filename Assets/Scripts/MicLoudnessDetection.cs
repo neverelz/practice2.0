@@ -1,20 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MicLoudnessDetection : MonoBehaviour
 {
     public int sampleWindow = 64;
 
-    private AudioClip _microphoneClip;
-    void Start()
+    public AudioClip _microphoneClip;
+
+    private void Start()
     {
-        MicToAudioClip();
+        _microphoneClip = Microphone.Start(Microphone.devices[0], true, 20, AudioSettings.outputSampleRate);
     }
-    
-    public void MicToAudioClip()
+
+    public void MicToAudioClip(string microphoneName)
     {
-        string microphoneName = Microphone.devices[0];
+        
         _microphoneClip = Microphone.Start(microphoneName, true, 20, AudioSettings.outputSampleRate);
     }
 
