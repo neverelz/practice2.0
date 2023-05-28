@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     private const string GRIP = "Grip";
     private const string TRIGGER = "Trigger";

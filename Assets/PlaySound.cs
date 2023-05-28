@@ -15,6 +15,6 @@ public class PlaySound : MonoBehaviour
 
    private void Update()
    {
-      if (gameObject.transform.position != _startPosition) _source.
+      
    }
 }

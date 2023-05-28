@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,7 +15,7 @@ public class Player : MonoBehaviour
         }
         _health -= damage;
     }
-
+    
     private void Heal()
     {
         if (_health >= _maxHealth)

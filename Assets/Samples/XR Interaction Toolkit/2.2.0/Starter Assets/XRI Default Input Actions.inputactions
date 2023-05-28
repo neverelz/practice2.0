@@ -381,7 +381,7 @@
                 {
                     "name": "",
                     "id": "882a9a52-62a9-4d0e-b0e4-e029ecdcc63f",
-                    "path": "<XRSimulatedController>{LeftHand}/menuButton",
+                    "path": "<XRController>{LeftHand}/menuButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
